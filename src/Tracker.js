@@ -14,6 +14,7 @@ class CalorieTracker {
     this._displayCaloriesRemaining();
     this._displayProgressBar();
     this._displayStorageMeals();
+    this._displayStorageWorkouts();
   }
 
   // Public Methods/API
@@ -31,7 +32,7 @@ class CalorieTracker {
     this._workouts.push(workout);
     this._displayNewWorkout(workout);
     this._totalCalories -= workout.calories;
-    Storage.saveWorkputs(this._workouts);
+    Storage.saveWorkouts(this._workouts);
     Storage.saveTotalCalories(this._totalCalories);
     this._render();
   }
@@ -56,7 +57,7 @@ class CalorieTracker {
       const workout = this._workouts[index];
       this._totalCalories += workout.calories;
       this._workouts.splice(index, 1);
-      Storage.saveWorkputs(this._workouts);
+      Storage.saveWorkouts(this._workouts);
       Storage.saveTotalCalories(this._totalCalories);
       this._render();
     }
@@ -185,6 +186,10 @@ class CalorieTracker {
               </div>
       `;
     workoutsEl.appendChild(workoutEl);
+  }
+
+  _displayStorageWorkouts() {
+    this._workouts.forEach((workout) => this._displayNewWorkout(workout));
   }
 
   _render() {

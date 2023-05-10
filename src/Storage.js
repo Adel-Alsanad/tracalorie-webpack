@@ -31,7 +31,7 @@ class Storage {
     return meals ? JSON.parse(meals) : [];
   }
 
-  static saveWorkputs(workouts) {
+  static saveWorkouts(workouts) {
     localStorage.setItem(Storage._workoutsKey, JSON.stringify(workouts));
   }
 
